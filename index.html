@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SURF: Rebuttal Ablation Results</title>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 1000px;
+            background-color: #ffffff;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+        }
+        h1 {
+            color: #1f2937;
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            color: #374151;
+        }
+        th, td {
+            border-top: 1px solid #e5e7eb;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 10px;
+            text-align: center;
+        }
+        /* Double line for top and bottom of table (booktabs style) */
+        .top-border { border-top: 2px solid #1f2937; }
+        .bottom-border { border-bottom: 2px solid #1f2937; }
+        .mid-border { border-bottom: 1px solid #1f2937; }
+        
+        .sub-header {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background-color: #f9fafb;
+            font-weight: 700;
+        }
+        .group-label {
+            text-align: left;
+            font-weight: 700;
+            background-color: #ffffff;
+            border-bottom: none;
+            padding-top: 20px;
+        }
+        .bold {
+            font-weight: 700;
+            color: #000000;
+        }
+        caption {
+            margin-bottom: 15px;
+            font-style: italic;
+            color: #4b5563;
+            line-height: 1.5;
+            text-align: left;
+        }
+        .metric-arrow {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>SURF: Rebuttal Results</h1>
+
+        <div class="table-container">
+            <table>
+                <caption>
+                    <b>Table 1. Comprehensive ablation studies for SURF.</b> We evaluate the impact of EMA decay (&alpha;), batch size (<i>B</i>), and the hybrid teacher &beta;(t) schedule on MNIST/CIFAR-10 image separation. Best results for each ablation are bolded.
+                </caption>
+                <thead>
+                    <tr class="top-border">
+                        <th rowspan="2" colspan="2" style="border-bottom: 1px solid #1f2937;">Ablation / Variant</th>
+                        <th colspan="3" style="border-bottom: 1px solid #e5e7eb;">SURF (Self-Remixing)</th>
+                        <th colspan="3" style="border-bottom: 1px solid #e5e7eb;">SURF (ReMixIT)</th>
+                    </tr>
+                    <tr class="mid-border">
+                        <th>PSNR <span class="metric-arrow">&uparrow;</span></th>
+                        <th>SSIM <span class="metric-arrow">&uparrow;</span></th>
+                        <th>LPIPS <span class="metric-arrow">&downarrow;</span></th>
+                        <th>PSNR <span class="metric-arrow">&uparrow;</span></th>
+                        <th>SSIM <span class="metric-arrow">&uparrow;</span></th>
+                        <th>LPIPS <span class="metric-arrow">&downarrow;</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- EMA Ablation -->
+                    <tr>
+                        <td rowspan="5" class="group-label">EMA &alpha;</td>
+                        <td>&alpha; = 0</td>
+                        <td>16.55</td>
+                        <td>0.631</td>
+                        <td>0.077</td>
+                        <td>16.63</td>
+                        <td>0.635</td>
+                        <td>0.075</td>
+                    </tr>
+                    <tr>
+                        <td>&alpha; = 0.9</td>
+                        <td>18.55</td>
+                        <td>0.733</td>
+                        <td>0.054</td>
+                        <td>18.62</td>
+                        <td>0.739</td>
+                        <td>0.051</td>
+                    </tr>
+                    <tr>
+                        <td>&alpha; = 0.99</td>
+                        <td>19.01</td>
+                        <td>0.741</td>
+                        <td>0.041</td>
+                        <td>18.99</td>
+                        <td>0.741</td>
+                        <td>0.043</td>
+                    </tr>
+                    <tr>
+                        <td>&alpha; = 0.999</td>
+                        <td class="bold">19.49</td>
+                        <td class="bold">0.751</td>
+                        <td class="bold">0.037</td>
+                        <td class="bold">19.73</td>
+                        <td class="bold">0.756</td>
+                        <td class="bold">0.036</td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #1f2937;">&alpha; = 0.9999</td>
+                        <td style="border-bottom: 1px solid #1f2937;">13.36</td>
+                        <td style="border-bottom: 1px solid #1f2937;">0.372</td>
+                        <td style="border-bottom: 1px solid #1f2937;">0.101</td>
+                        <td style="border-bottom: 1px solid #1f2937;">13.55</td>
+                        <td style="border-bottom: 1px solid #1f2937;">0.401</td>
+                        <td style="border-bottom: 1px solid #1f2937;">0.098</td>
+                    </tr>
+
+                    <!-- Batch Size Ablation -->
+                    <tr>
+                        <td rowspan="5" class="group-label">Batch Size <i>B</i></td>
+                        <td><i>B</i> = 1</td>
+                        <td>8.79</td>
+                        <td>0.071</td>
+                        <td>0.379</td>
+                        <td>15.87</td>
+                        <td>0.596</td>
+                        <td>0.094</td>
+                    </tr>
+                    <tr>
+                        <td><i>B</i> = 4</td>
+                        <td>16.46</td>
+                        <td>0.629</td>
+                        <td>0.078</td>
+                        <td>16.88</td>
+                        <td>0.657</td>
+                        <td>0.075</td>
+                    </tr>
+                    <tr>
+                        <td><i>B</i> = 16</td>
+                        <td>17.49</td>
+                        <td>0.681</td>
+                        <td>0.065</td>
+                        <td>17.65</td>
+                        <td>0.697</td>
+                        <td>0.063</td>
+                    </tr>
+                    <tr>
+                        <td><i>B</i> = 64</td>
+                        <td>18.11</td>
+                        <td>0.730</td>
+                        <td>0.056</td>
+                        <td>18.85</td>
+                        <td>0.712</td>
+                        <td>0.048</td>
+                    </tr>
+                    <tr>
+                        <td style="border-bottom: 1px solid #1f2937;"><i>B</i> = 256</td>
+                        <td style="border-bottom: 1px solid #1f2937;" class="bold">19.49</td>
+                        <td style="border-bottom: 1px solid #1f2937;" class="bold">0.751</td>
+                        <td style="border-bottom: 1px solid #1f2937;" class="bold">0.036</td>
+                        <td style="border-bottom: 1px solid #1f2937;" class="bold">19.73</td>
+                        <td style="border-bottom: 1px solid #1f2937;" class="bold">0.756</td>
+                        <td style="border-bottom: 1px solid #1f2937;" class="bold">0.036</td>
+                    </tr>
+
+                    <!-- Hybrid Teacher Ablation -->
+                    <tr>
+                        <td rowspan="4" class="group-label">Teacher &beta;(t)</td>
+                        <td>&beta; = 0.1</td>
+                        <td>8.15</td>
+                        <td>0.078</td>
+                        <td>0.380</td>
+                        <td>8.48</td>
+                        <td>0.081</td>
+                        <td>0.372</td>
+                    </tr>
+                    <tr>
+                        <td>&beta; = 0.5</td>
+                        <td>18.46</td>
+                        <td>0.721</td>
+                        <td>0.051</td>
+                        <td>18.41</td>
+                        <td>0.719</td>
+                        <td>0.053</td>
+                    </tr>
+                    <tr>
+                        <td>&beta; = 1.0</td>
+                        <td>17.30</td>
+                        <td>0.701</td>
+                        <td>0.060</td>
+                        <td>18.08</td>
+                        <td>0.723</td>
+                        <td>0.055</td>
+                    </tr>
+                    <tr class="bottom-border">
+                        <td>Proposed Sched.</td>
+                        <td class="bold">19.49</td>
+                        <td class="bold">0.751</td>
+                        <td class="bold">0.037</td>
+                        <td class="bold">19.73</td>
+                        <td class="bold">0.756</td>
+                        <td class="bold">0.036</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
