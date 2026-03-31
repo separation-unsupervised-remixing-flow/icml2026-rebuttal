@@ -26,9 +26,18 @@
             text-align: center;
             margin-bottom: 30px;
         }
+        h2 {
+            color: #1f2937;
+            font-size: 1.5rem;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 10px;
+        }
         .table-container {
             overflow-x: auto;
             margin-top: 20px;
+            margin-bottom: 40px;
         }
         table {
             width: 100%;
@@ -47,13 +56,6 @@
         .bottom-border { border-bottom: 2px solid #1f2937; }
         .mid-border { border-bottom: 1px solid #1f2937; }
         
-        .sub-header {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            background-color: #f9fafb;
-            font-weight: 700;
-        }
         .group-label {
             text-align: left;
             font-weight: 700;
@@ -65,16 +67,34 @@
             font-weight: 700;
             color: #000000;
         }
-        caption {
+        .underline {
+            text-decoration: underline;
+        }
+        caption, figcaption {
             margin-bottom: 15px;
-            font-style: italic;
+            font-size: 0.95rem;
             color: #4b5563;
-            line-height: 1.5;
+            line-height: 1.6;
             text-align: left;
+        }
+        figcaption {
+            margin-top: 15px;
+            margin-bottom: 0;
         }
         .metric-arrow {
             font-size: 0.8rem;
             color: #6b7280;
+        }
+        figure {
+            margin: 40px 0;
+            padding: 0;
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
         }
     </style>
 </head>
@@ -83,6 +103,7 @@
     <div class="container">
         <h1>SURF: Rebuttal Results</h1>
 
+        <h2>1. CIFAR-10 Ablation Studies</h2>
         <div class="table-container">
             <table>
                 <caption>
@@ -104,7 +125,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- EMA Ablation -->
                     <tr>
                         <td rowspan="5" class="group-label">EMA &alpha;</td>
                         <td>&alpha; = 0</td>
@@ -152,7 +172,6 @@
                         <td style="border-bottom: 1px solid #1f2937;">0.098</td>
                     </tr>
 
-                    <!-- Batch Size Ablation -->
                     <tr>
                         <td rowspan="5" class="group-label">Batch Size <i>B</i></td>
                         <td><i>B</i> = 1</td>
@@ -200,7 +219,6 @@
                         <td style="border-bottom: 1px solid #1f2937;" class="bold">0.036</td>
                     </tr>
 
-                    <!-- Hybrid Teacher Ablation -->
                     <tr>
                         <td rowspan="4" class="group-label">Teacher &beta;(t)</td>
                         <td>&beta; = 0.1</td>
@@ -241,6 +259,63 @@
                 </tbody>
             </table>
         </div>
+
+        <h2>2. Audio Separation Confidence Intervals (95%)</h2>
+        
+        <figure>
+            <img src="fuss_librispeech_ci_barplot.png" alt="Bar plot showing metrics with 95% confidence intervals on the LibriSpeech + FUSS dataset">
+            <figcaption>
+                <b>Figure 1. Visualization of multi-source separation metrics with 95% confidence intervals on the LibriSpeech + FUSS evaluation set.</b> As noted in Table 2 below, the Supervised Baseline (gray) serves as an idealized, in-domain upper bound. This highlights the strong generalization capabilities of SURF (blue bars), which achieves highly competitive performance despite being trained without supervision on the entirely disparate AudioSet distribution.
+            </figcaption>
+        </figure>
+
+        <div class="table-container">
+            <table>
+                <caption>
+                    <b>Table 2. Evaluation on noisy speech samples (LibriSpeech + FUSS) for 2 Source Mixtures with 95% Confidence Intervals.</b> Values are reported as Mean &plusmn; 95% CI (estimated over 1000 samples). The best unsupervised method, along with any statistically equivalent methods (overlapping CIs), are <b>bolded</b>. The next distinct statistical tier is <span class="underline">underlined</span>. <i>Note: The Supervised Baseline is provided for reference but represents an idealized upper bound, as it is fully supervised and trained directly on the in-domain LibriSpeech+FUSS distribution. In contrast, all unsupervised methods, including SURF, are trained strictly out-of-domain on ambient mixtures from AudioSet.</i>
+                </caption>
+                <thead>
+                    <tr class="top-border">
+                        <th style="text-align: left;">Method</th>
+                        <th>SI-SNR <span class="metric-arrow">&uparrow;</span></th>
+                        <th>ESTOI <span class="metric-arrow">&uparrow;</span></th>
+                        <th>PESQ <span class="metric-arrow">&uparrow;</span></th>
+                        <th>DNSMOS <span class="metric-arrow">&uparrow;</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="mid-border">
+                        <td style="text-align: left;">Supervised Baseline</td>
+                        <td>18.207 &plusmn; 0.526</td>
+                        <td>0.904 &plusmn; 0.006</td>
+                        <td>3.289 &plusmn; 0.055</td>
+                        <td>2.576 &plusmn; 0.029</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">MixIT</td>
+                        <td class="underline">14.220 &plusmn; 0.356</td>
+                        <td class="bold">0.771 &plusmn; 0.006</td>
+                        <td class="bold">2.650 &plusmn; 0.040</td>
+                        <td class="bold">2.350 &plusmn; 0.019</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">SURF (ReMixIT)</td>
+                        <td class="bold">15.140 &plusmn; 0.521</td>
+                        <td class="bold">0.772 &plusmn; 0.011</td>
+                        <td class="bold">2.670 &plusmn; 0.053</td>
+                        <td class="bold">2.360 &plusmn; 0.020</td>
+                    </tr>
+                    <tr class="bottom-border">
+                        <td style="text-align: left;">SURF (Self-Remixing)</td>
+                        <td class="bold">15.130 &plusmn; 0.521</td>
+                        <td class="bold">0.766 &plusmn; 0.011</td>
+                        <td class="bold">2.700 &plusmn; 0.052</td>
+                        <td class="bold">2.330 &plusmn; 0.019</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
 
 </body>
