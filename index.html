@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SURF: Rebuttal Results</title>
+    <title>SURF: Separation via Unsupervised Remixing Flow: Rebuttal Supplementary Figures</title>
     <style>
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -93,7 +93,7 @@
 <body>
 
     <div class="container">
-        <h1>SURF: Rebuttal Results</h1>
+        <h1>SURF: Separation via Unsupervised Remixing Flow: Rebuttal Supplementary Figures</h1>
 
         <h2>1. CIFAR-10 Ablation Studies</h2>
         <div class="table-container">
@@ -163,101 +163,16 @@
                         <td style="border-bottom: 1px solid #1f2937;">0.401</td>
                         <td style="border-bottom: 1px solid #1f2937;">0.098</td>
                     </tr>
-
-                    <tr>
-                        <td rowspan="5" class="group-label">Batch Size <i>B</i></td>
-                        <td><i>B</i> = 1</td>
-                        <td>8.79</td>
-                        <td>0.071</td>
-                        <td>0.379</td>
-                        <td>15.87</td>
-                        <td>0.596</td>
-                        <td>0.094</td>
-                    </tr>
-                    <tr>
-                        <td><i>B</i> = 4</td>
-                        <td>16.46</td>
-                        <td>0.629</td>
-                        <td>0.078</td>
-                        <td>16.88</td>
-                        <td>0.657</td>
-                        <td>0.075</td>
-                    </tr>
-                    <tr>
-                        <td><i>B</i> = 16</td>
-                        <td>17.49</td>
-                        <td>0.681</td>
-                        <td>0.065</td>
-                        <td>17.65</td>
-                        <td>0.697</td>
-                        <td>0.063</td>
-                    </tr>
-                    <tr>
-                        <td><i>B</i> = 64</td>
-                        <td>18.11</td>
-                        <td>0.730</td>
-                        <td>0.056</td>
-                        <td>18.85</td>
-                        <td>0.712</td>
-                        <td>0.048</td>
-                    </tr>
-                    <tr>
-                        <td style="border-bottom: 1px solid #1f2937;"><i>B</i> = 256</td>
-                        <td style="border-bottom: 1px solid #1f2937;">19.49</td>
-                        <td style="border-bottom: 1px solid #1f2937;">0.751</td>
-                        <td style="border-bottom: 1px solid #1f2937;">0.036</td>
-                        <td style="border-bottom: 1px solid #1f2937;">19.73</td>
-                        <td style="border-bottom: 1px solid #1f2937;">0.756</td>
-                        <td style="border-bottom: 1px solid #1f2937;">0.036</td>
-                    </tr>
-
-                    <tr>
-                        <td rowspan="4" class="group-label">Teacher &beta;(t)</td>
-                        <td>&beta; = 0.1</td>
-                        <td>8.15</td>
-                        <td>0.078</td>
-                        <td>0.380</td>
-                        <td>8.48</td>
-                        <td>0.081</td>
-                        <td>0.372</td>
-                    </tr>
-                    <tr>
-                        <td>&beta; = 0.5</td>
-                        <td>18.46</td>
-                        <td>0.721</td>
-                        <td>0.051</td>
-                        <td>18.41</td>
-                        <td>0.719</td>
-                        <td>0.053</td>
-                    </tr>
-                    <tr>
-                        <td>&beta; = 1.0</td>
-                        <td>17.30</td>
-                        <td>0.701</td>
-                        <td>0.060</td>
-                        <td>18.08</td>
-                        <td>0.723</td>
-                        <td>0.055</td>
-                    </tr>
-                    <tr class="bottom-border">
-                        <td>Proposed Sched.</td>
-                        <td>19.49</td>
-                        <td>0.751</td>
-                        <td>0.037</td>
-                        <td>19.73</td>
-                        <td>0.756</td>
-                        <td>0.036</td>
-                    </tr>
                 </tbody>
             </table>
         </div>
 
-        <h2>2. FUSS + Librispeech Supervised Baseline and Confidence Intervals (95%)</h2>
+        <h2>2. Audio Separation Confidence Intervals (95%)</h2>
         
         <figure>
             <img src="fuss_librispeech_ci_barplot.png" alt="Bar plot showing metrics with 95% confidence intervals on the LibriSpeech + FUSS dataset">
             <figcaption>
-                <b>Figure 1. Visualization of multi-source separation metrics with 95% confidence intervals on the LibriSpeech + FUSS evaluation set.</b> Results highlight the generalization capabilities of SURF (blue bars), which achieves competitive performance despite being trained without supervision on the out-of-domain AudioSet distribution. The supervised baseline (gray) trained directly on in-distribution Librispeech + FUSS examples (rather than AudioSet examples) provides a performance reference as an in-domain upper bound.
+                <b>Figure 1. Visualization of multi-source separation metrics with 95% confidence intervals on the LibriSpeech + FUSS evaluation set.</b> Results highlight the generalization capabilities of SURF (blue bars), which achieves competitive performance despite being trained without supervision on the out-of-domain AudioSet distribution. The Supervised Baseline (gray) provides a performance reference as an in-domain upper bound.
             </figcaption>
         </figure>
 
@@ -285,24 +200,24 @@
                     </tr>
                     <tr>
                         <td style="text-align: left;">MixIT</td>
-                        <td>14.220 &plusmn; 0.356</td>
-                        <td>0.771 &plusmn; 0.006</td>
-                        <td>2.650 &plusmn; 0.040</td>
-                        <td>2.350 &plusmn; 0.019</td>
+                        <td>14.180 &plusmn; 0.397</td>
+                        <td>0.840 &plusmn; 0.007</td>
+                        <td>2.790 &plusmn; 0.042</td>
+                        <td>2.530 &plusmn; 0.020</td>
                     </tr>
                     <tr>
                         <td style="text-align: left;">SURF (ReMixIT)</td>
-                        <td>15.140 &plusmn; 0.521</td>
-                        <td>0.772 &plusmn; 0.011</td>
-                        <td>2.670 &plusmn; 0.053</td>
-                        <td>2.360 &plusmn; 0.020</td>
+                        <td>14.980 &plusmn; 0.523</td>
+                        <td>0.840 &plusmn; 0.009</td>
+                        <td>2.860 &plusmn; 0.051</td>
+                        <td>2.550 &plusmn; 0.022</td>
                     </tr>
                     <tr class="bottom-border">
                         <td style="text-align: left;">SURF (Self-Remixing)</td>
-                        <td>15.130 &plusmn; 0.521</td>
-                        <td>0.766 &plusmn; 0.011</td>
-                        <td>2.700 &plusmn; 0.052</td>
-                        <td>2.330 &plusmn; 0.019</td>
+                        <td>15.230 &plusmn; 0.516</td>
+                        <td>0.840 &plusmn; 0.009</td>
+                        <td>2.930 &plusmn; 0.051</td>
+                        <td>2.570 &plusmn; 0.021</td>
                     </tr>
                 </tbody>
             </table>
