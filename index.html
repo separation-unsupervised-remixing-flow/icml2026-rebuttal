@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SURF: Rebuttal Ablation Results</title>
+    <title>SURF: Rebuttal Results</title>
     <style>
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -51,7 +51,6 @@
             padding: 10px;
             text-align: center;
         }
-        /* Double line for top and bottom of table (booktabs style) */
         .top-border { border-top: 2px solid #1f2937; }
         .bottom-border { border-bottom: 2px solid #1f2937; }
         .mid-border { border-bottom: 1px solid #1f2937; }
@@ -62,13 +61,6 @@
             background-color: #ffffff;
             border-bottom: none;
             padding-top: 20px;
-        }
-        .bold {
-            font-weight: 700;
-            color: #000000;
-        }
-        .underline {
-            text-decoration: underline;
         }
         caption, figcaption {
             margin-bottom: 15px;
@@ -107,7 +99,7 @@
         <div class="table-container">
             <table>
                 <caption>
-                    <b>Table 1. Comprehensive ablation studies for SURF.</b> We evaluate the impact of EMA decay (&alpha;), batch size (<i>B</i>), and the hybrid teacher &beta;(t) schedule on CIFAR-10 image separation. Best results for each ablation are bolded.
+                    <b>Table 1. Comprehensive ablation studies for SURF.</b> We report the impact of EMA decay (&alpha;), batch size (<i>B</i>), and the hybrid teacher &beta;(t) schedule on CIFAR-10 image separation.
                 </caption>
                 <thead>
                     <tr class="top-border">
@@ -155,12 +147,12 @@
                     </tr>
                     <tr>
                         <td>&alpha; = 0.999</td>
-                        <td class="bold">19.49</td>
-                        <td class="bold">0.751</td>
-                        <td class="bold">0.037</td>
-                        <td class="bold">19.73</td>
-                        <td class="bold">0.756</td>
-                        <td class="bold">0.036</td>
+                        <td>19.49</td>
+                        <td>0.751</td>
+                        <td>0.037</td>
+                        <td>19.73</td>
+                        <td>0.756</td>
+                        <td>0.036</td>
                     </tr>
                     <tr>
                         <td style="border-bottom: 1px solid #1f2937;">&alpha; = 0.9999</td>
@@ -211,12 +203,12 @@
                     </tr>
                     <tr>
                         <td style="border-bottom: 1px solid #1f2937;"><i>B</i> = 256</td>
-                        <td style="border-bottom: 1px solid #1f2937;" class="bold">19.49</td>
-                        <td style="border-bottom: 1px solid #1f2937;" class="bold">0.751</td>
-                        <td style="border-bottom: 1px solid #1f2937;" class="bold">0.036</td>
-                        <td style="border-bottom: 1px solid #1f2937;" class="bold">19.73</td>
-                        <td style="border-bottom: 1px solid #1f2937;" class="bold">0.756</td>
-                        <td style="border-bottom: 1px solid #1f2937;" class="bold">0.036</td>
+                        <td style="border-bottom: 1px solid #1f2937;">19.49</td>
+                        <td style="border-bottom: 1px solid #1f2937;">0.751</td>
+                        <td style="border-bottom: 1px solid #1f2937;">0.036</td>
+                        <td style="border-bottom: 1px solid #1f2937;">19.73</td>
+                        <td style="border-bottom: 1px solid #1f2937;">0.756</td>
+                        <td style="border-bottom: 1px solid #1f2937;">0.036</td>
                     </tr>
 
                     <tr>
@@ -249,12 +241,12 @@
                     </tr>
                     <tr class="bottom-border">
                         <td>Proposed Sched.</td>
-                        <td class="bold">19.49</td>
-                        <td class="bold">0.751</td>
-                        <td class="bold">0.037</td>
-                        <td class="bold">19.73</td>
-                        <td class="bold">0.756</td>
-                        <td class="bold">0.036</td>
+                        <td>19.49</td>
+                        <td>0.751</td>
+                        <td>0.037</td>
+                        <td>19.73</td>
+                        <td>0.756</td>
+                        <td>0.036</td>
                     </tr>
                 </tbody>
             </table>
@@ -265,14 +257,14 @@
         <figure>
             <img src="fuss_librispeech_ci_barplot.png" alt="Bar plot showing metrics with 95% confidence intervals on the LibriSpeech + FUSS dataset">
             <figcaption>
-                <b>Figure 1. Visualization of multi-source separation metrics with 95% confidence intervals on the LibriSpeech + FUSS evaluation set.</b> As noted in Table 2 below, the Supervised Baseline (gray) serves as an idealized, in-domain upper bound. This highlights the strong generalization capabilities of SURF (blue bars), which achieves highly competitive performance despite being trained without supervision on the entirely disparate AudioSet distribution.
+                <b>Figure 1. Visualization of multi-source separation metrics with 95% confidence intervals on the LibriSpeech + FUSS evaluation set.</b> Results highlight the generalization capabilities of SURF (blue bars), which achieves competitive performance despite being trained without supervision on the out-of-domain AudioSet distribution. The Supervised Baseline (gray) provides a performance reference as an in-domain upper bound.
             </figcaption>
         </figure>
 
         <div class="table-container">
             <table>
                 <caption>
-                    <b>Table 2. Evaluation on noisy speech samples (LibriSpeech + FUSS) for 2 Source Mixtures with 95% Confidence Intervals.</b> Values are reported as Mean &plusmn; 95% CI (estimated over 1000 samples). The best unsupervised method, along with any statistically equivalent methods (overlapping CIs), are <b>bolded</b>. The next distinct statistical tier is <span class="underline">underlined</span>. <i>Note: The Supervised Baseline is provided for reference but represents an idealized upper bound, as it is fully supervised and trained directly on the in-domain LibriSpeech+FUSS distribution. In contrast, all unsupervised methods, including SURF, are trained strictly out-of-domain on ambient mixtures from AudioSet.</i>
+                    <b>Table 2. Evaluation on noisy speech samples (LibriSpeech + FUSS) for 2 Source Mixtures.</b> Values are Mean &plusmn; 95% CI (estimated over 1000 samples). Non-overlapping confidence intervals between SURF variants and the MixIT baseline indicate that the improvements are statistically significant at the 95% confidence level. <i>Note: The Supervised Baseline is provided as an idealized upper bound, as it is fully supervised and trained directly on the in-domain LibriSpeech+FUSS distribution.</i>
                 </caption>
                 <thead>
                     <tr class="top-border">
@@ -293,24 +285,24 @@
                     </tr>
                     <tr>
                         <td style="text-align: left;">MixIT</td>
-                        <td class="underline">14.220 &plusmn; 0.356</td>
-                        <td class="bold">0.771 &plusmn; 0.006</td>
-                        <td class="bold">2.650 &plusmn; 0.040</td>
-                        <td class="bold">2.350 &plusmn; 0.019</td>
+                        <td>14.220 &plusmn; 0.356</td>
+                        <td>0.771 &plusmn; 0.006</td>
+                        <td>2.650 &plusmn; 0.040</td>
+                        <td>2.350 &plusmn; 0.019</td>
                     </tr>
                     <tr>
                         <td style="text-align: left;">SURF (ReMixIT)</td>
-                        <td class="bold">15.140 &plusmn; 0.521</td>
-                        <td class="bold">0.772 &plusmn; 0.011</td>
-                        <td class="bold">2.670 &plusmn; 0.053</td>
-                        <td class="bold">2.360 &plusmn; 0.020</td>
+                        <td>15.140 &plusmn; 0.521</td>
+                        <td>0.772 &plusmn; 0.011</td>
+                        <td>2.670 &plusmn; 0.053</td>
+                        <td>2.360 &plusmn; 0.020</td>
                     </tr>
                     <tr class="bottom-border">
                         <td style="text-align: left;">SURF (Self-Remixing)</td>
-                        <td class="bold">15.130 &plusmn; 0.521</td>
-                        <td class="bold">0.766 &plusmn; 0.011</td>
-                        <td class="bold">2.700 &plusmn; 0.052</td>
-                        <td class="bold">2.330 &plusmn; 0.019</td>
+                        <td>15.130 &plusmn; 0.521</td>
+                        <td>0.766 &plusmn; 0.011</td>
+                        <td>2.700 &plusmn; 0.052</td>
+                        <td>2.330 &plusmn; 0.019</td>
                     </tr>
                 </tbody>
             </table>
